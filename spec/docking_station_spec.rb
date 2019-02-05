@@ -8,7 +8,7 @@ describe DockingStation do
   it {
     station = DockingStation.new
     bike = station.release_bike
-    expects bike.working?.to eq true
+    expect(bike.working?).to eq true
   }
 
 end
