@@ -1,8 +1,5 @@
-require './lib/boris_bikes.rb'
+require './lib/docking_station.rb'
 
 describe DockingStation do
- it 'reponds to release_bike' do
-   docking_station = DockingStation.new
-   expect(docking_station.respond_to?(:release_bike)).to eq true
- end
+   it {is_expected.to respond_to :release_bike}
 end
