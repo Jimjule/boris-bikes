@@ -1,5 +1,5 @@
 require './lib/docking_station.rb'
-
+require './lib/bike.rb'
 describe DockingStation do
   before(:each) do
     @station = DockingStation.new
@@ -12,7 +12,8 @@ describe DockingStation do
   }
 
   it 'respond to dock' do
-    @station.dock
+    @station.release_bike
+    @station.dock(Bike.new)
   end
 
   it "bike object is retruned on call of bikes" do
@@ -21,8 +22,11 @@ describe DockingStation do
   end
 
   it "Raises and error when there are no bikes left" do
-    @station.release_bike
-    @station.release_bike
+    2.times { @station.release_bike }
     expect { @station.release_bike }.to raise_exception('No bikes left')
+  end
+
+  it 'Raises an error when you try to put more bikes then the capacity of the station' do
+    expect { @station.dock(Bike.new) }.to raise_exception('Station is full')
   end
 end

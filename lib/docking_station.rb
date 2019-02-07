@@ -1,23 +1,20 @@
 class DockingStation
+
   attr_reader( :bikes)
+
   def initialize
     @bikes = []
-    @bikes << Bike.new
-    @bikes << Bike.new
+    @capacity = 2
+    @capacity.times { @bikes << Bike.new }
   end
+
   def release_bike
-    if @bikes.count == 0
-      fail "No bikes left"
-    end
+    fail "No bikes left" if @bikes.count == 0
     @bikes.pop
   end
-  def dock
 
+  def dock(bike)
+    if @bikes.count >= 2 then fail "Station is full" else @bikes << bike end
   end
-end
 
-class Bike
-  def working?
-    true
-  end
 end
