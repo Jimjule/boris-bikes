@@ -43,4 +43,9 @@ describe DockingStation do
     bike = Bike.new
     expect(bike.broken).to eq !bike.working?
   end
+
+  it "Can return a broken bike" do
+    bike = Bike.new.broken
+    expect(bike.working?).to eq false
+  end
 end
