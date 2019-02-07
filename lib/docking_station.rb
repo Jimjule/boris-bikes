@@ -11,7 +11,11 @@ class DockingStation
 
   def release_bike
     empty?
-    @bikes.pop
+    working_bikes = @bikes.select { |x| x.working? == true }
+    broken_bikes = @bikes.select { |x| x.working? == false }
+    output_bike = working_bikes.pop
+    @bikes = working_bikes + broken_bikes
+    return output_bike
   end
 
   def dock(bike)
