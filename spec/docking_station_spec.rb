@@ -39,13 +39,16 @@ describe DockingStation do
     expect(station2.bikes.count).to eq 50
   end
 
-  it "Set bike broken" do
+  it "Can return a broken bike" do
     bike = Bike.new
-    expect(bike.broken).to eq !bike.working?
+    bike.broken
+    expect(bike.working?).to eq false
   end
 
-  it "Can return a broken bike" do
-    bike = Bike.new.broken
-    expect(bike.working?).to eq false
+  it "Dosen't release a broken bike" do
+    bike = @station.release_bike
+    bike.broken
+    @station.dock(bike)
+    expect(@station.release_bike.working?).to eq true
   end
 end
