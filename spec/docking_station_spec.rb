@@ -1,5 +1,6 @@
 require './lib/docking_station.rb'
 require './lib/bike.rb'
+require './lib/garage.rb'
 describe DockingStation do
   before(:each) do
     @station = DockingStation.new
@@ -68,6 +69,7 @@ describe DockingStation do
       bike.broken
       @station.dock(bike)
     end
-    Garage.store(@station.van_pick_up)
+    garage = Garage.new
+    garage.store(@station.van_pick_up)
   end
 end

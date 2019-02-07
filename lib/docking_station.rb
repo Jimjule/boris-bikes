@@ -24,7 +24,9 @@ class DockingStation
   end
 
   def van_pick_up
+    broken_bikes = @bikes.select { |x| x.working? == false }
     @bikes = @bikes.select { |x| x.working? == true }
+    broken_bikes 
   end
 
   private def full?
