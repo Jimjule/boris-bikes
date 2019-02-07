@@ -19,4 +19,9 @@ describe DockingStation do
     @station.release_bike
     expect(@station.bikes.class).to eq Bike
   end
+
+  it "Raises and error when there are no bikes left" do
+    @station.release_bike
+    expect { raise @station.release_bike }.to raise_error('No bikes left')
+  end
 end
