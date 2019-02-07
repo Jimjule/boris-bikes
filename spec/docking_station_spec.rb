@@ -22,7 +22,7 @@ describe DockingStation do
   end
 
   it "Raises and error when there are no bikes left" do
-    20.times { @station.release_bike }
+    DockingStation::DEFAULT_CAPACITY.times { @station.release_bike }
     expect { @station.release_bike }.to raise_exception('No bikes left')
   end
 
@@ -31,6 +31,11 @@ describe DockingStation do
   end
 
   it "Makes capacity equal 20" do
-    expect(@station.bikes.count).to eq 20
+    expect(@station.bikes.count).to eq DockingStation::DEFAULT_CAPACITY
+  end
+
+  it "Set capacity of station to 50" do
+    station2 = DockingStation.new(50)
+    expect(station2.bikes.count).to eq 50
   end
 end
