@@ -61,4 +61,13 @@ describe DockingStation do
     @station.van_pick_up
     expect(@station.bikes.select { |bike| bike.working? != true }.count).to eq 0
   end
+
+  it "Van takes bikes to garage" do
+    3.times do
+      bike = @station.release_bike
+      bike.broken
+      @station.dock(bike)
+    end
+    Garage.store(@station.van_pick_up)
+  end
 end

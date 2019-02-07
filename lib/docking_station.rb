@@ -23,6 +23,10 @@ class DockingStation
     @bikes << bike
   end
 
+  def van_pick_up
+    @bikes = @bikes.select { |x| x.working? == true }
+  end
+
   private def full?
     fail "Station is full" if @bikes.count >= 20
   end
