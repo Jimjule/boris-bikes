@@ -1,6 +1,7 @@
 class DockingStation
+  attr_reader( :bikes)
   def release_bike
-    bike = Bike.new
+    @bikes = Bike.new
   end
   def dock
 
