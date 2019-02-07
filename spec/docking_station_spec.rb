@@ -38,4 +38,9 @@ describe DockingStation do
     station2 = DockingStation.new(50)
     expect(station2.bikes.count).to eq 50
   end
+
+  it "Set bike broken" do
+    bike = Bike.new
+    expect(bike.broken).to eq !bike.working?
+  end
 end
