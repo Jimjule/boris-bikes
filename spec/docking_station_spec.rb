@@ -17,11 +17,12 @@ describe DockingStation do
 
   it "bike object is retruned on call of bikes" do
     @station.release_bike
-    expect(@station.bikes.class).to eq Bike
+    expect(@station.bikes[0].class).to eq Bike
   end
 
   it "Raises and error when there are no bikes left" do
     @station.release_bike
-    expect { raise @station.release_bike }.to raise_error('No bikes left')
+    @station.release_bike
+    expect { @station.release_bike }.to raise_exception('No bikes left')
   end
 end

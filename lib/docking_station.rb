@@ -1,7 +1,15 @@
 class DockingStation
   attr_reader( :bikes)
+  def initialize
+    @bikes = []
+    @bikes << Bike.new
+    @bikes << Bike.new
+  end
   def release_bike
-    @bikes = Bike.new
+    if @bikes.count == 0
+      fail "No bikes left"
+    end
+    @bikes.pop
   end
   def dock
 
