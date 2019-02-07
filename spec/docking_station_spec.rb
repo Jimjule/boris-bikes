@@ -13,7 +13,7 @@ describe DockingStation do
 
   it 'respond to dock' do
     @station.release_bike
-    @station.dock(Bike.new)
+    @station.dock double(:bike)
   end
 
   it "bike object is retruned on call of bikes" do
@@ -27,7 +27,7 @@ describe DockingStation do
   end
 
   it 'Raises an error when you try to put more bikes then the capacity of the station' do
-    expect { @station.dock(Bike.new) }.to raise_exception('Station is full')
+    expect { @station.dock double(:bike) }.to raise_exception('Station is full')
   end
 
   it "Makes capacity equal 20" do
@@ -39,13 +39,13 @@ describe DockingStation do
     expect(station2.bikes.count).to eq 50
   end
 
-  it "Can return a broken bike" do
-    bike = Bike.new
+  it "Can break bike" do
+    bike = @station.release_bike
     bike.broken
     expect(bike.working?).to eq false
   end
 
-  it "Dosen't release a broken bike" do
+  it "Doesn't release a broken bike" do
     bike = @station.release_bike
     bike.broken
     @station.dock(bike)
