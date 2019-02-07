@@ -22,11 +22,15 @@ describe DockingStation do
   end
 
   it "Raises and error when there are no bikes left" do
-    2.times { @station.release_bike }
+    20.times { @station.release_bike }
     expect { @station.release_bike }.to raise_exception('No bikes left')
   end
 
   it 'Raises an error when you try to put more bikes then the capacity of the station' do
     expect { @station.dock(Bike.new) }.to raise_exception('Station is full')
+  end
+
+  it "Makes capacity equal 20" do
+    expect(@station.bikes.count).to eq 20
   end
 end

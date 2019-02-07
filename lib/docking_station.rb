@@ -2,9 +2,9 @@ class DockingStation
 
   attr_reader( :bikes)
 
-  def initialize
+  def initialize(capacity = 20)
     @bikes = []
-    @capacity = 2
+    @capacity = capacity
     @capacity.times { @bikes << Bike.new }
   end
 
@@ -14,7 +14,7 @@ class DockingStation
   end
 
   def dock(bike)
-    fail "Station is full" if @bikes.count >= 2
+    fail "Station is full" if @bikes.count >= 20
     @bikes << bike
   end
 
